@@ -31,58 +31,94 @@ Track your LLM token consumption across Claude, GPT, Gemini, DeepSeek, and any m
 
 ## Quick Start
 
-### Python
+### Step 1: Get your API key (10 seconds)
 
-```python
-import ohmytoken
+1. Go to **[ohmytoken.dev](https://ohmytoken.dev)**
+2. Click **GOOGLE** or **GITHUB** to sign in
+3. Your API key appears on the welcome screen — copy it (looks like `omt_a1b2c3...`)
 
-ohmytoken.init("omt_your_key")
+### Step 2: Track your tokens
 
-# After each LLM call:
-ohmytoken.track("gpt-4o", prompt_tokens=500, completion_tokens=200)
-```
+Pick your language/tool below and add 2-3 lines of code. That's it.
 
-### JavaScript / TypeScript
+---
 
-```javascript
-import { init, track } from 'ohmytoken'
-
-init('omt_your_key')
-
-await track('claude-sonnet-4-20250514', 1000, 400)
-```
-
-### Go
-
-```go
-client := ohmytoken.New("omt_your_key")
-client.Track("gemini-2.0-flash", 800, 300)
-```
-
-### curl
-
-```bash
-curl -X POST https://api.ohmytoken.dev/api/v1/ingest \
-  -H "X-API-Key: omt_your_key" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"gpt-4o","prompt_tokens":500,"completion_tokens":200}'
-```
-
-### Claude Code (zero code changes)
+### Claude Code — 0 code changes, just env vars
 
 ```bash
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://api.ohmytoken.dev/api/v1/traces
-export OTEL_EXPORTER_OTLP_HEADERS="x-api-key=omt_your_key"
+export OTEL_EXPORTER_OTLP_HEADERS="x-api-key=omt_YOUR_KEY"
 ```
 
-### OpenClaw
+Add to your `.zshrc` / `.bashrc`, then `source ~/.zshrc`. Done.
+
+### OpenClaw — 1 command
 
 ```bash
 openclaw skill install @0x5446/ohmytoken-tracker
 ```
 
-Get your free API key at **[ohmytoken.dev](https://ohmytoken.dev)**.
+Then add your key to `openclaw.json`:
+```json
+{ "skills": { "ohmytoken-tracker": { "config": { "api_key": "omt_YOUR_KEY" } } } }
+```
+
+### Cursor — via OpenRouter webhook
+
+In OpenRouter: Settings > Observability > Enable Broadcast > Add Webhook:
+- **URL**: `https://api.ohmytoken.dev/api/v1/traces`
+- **Headers**: `{"X-API-Key": "omt_YOUR_KEY"}`
+
+### curl — any language, any agent
+
+```bash
+curl -X POST https://api.ohmytoken.dev/api/v1/ingest \
+  -H "X-API-Key: omt_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gpt-4o","prompt_tokens":500,"completion_tokens":200}'
+```
+
+Call this after each LLM API call. Works from any language.
+
+### Python SDK
+
+```bash
+# Copy the single-file SDK into your project:
+curl -o ohmytoken.py https://raw.githubusercontent.com/0x5446/ohmytoken-oss/main/sdk/python/ohmytoken.py
+```
+
+```python
+import ohmytoken
+
+ohmytoken.init("omt_YOUR_KEY")
+ohmytoken.track("gpt-4o", prompt_tokens=500, completion_tokens=200)
+```
+
+### JavaScript SDK
+
+```bash
+# Copy the SDK into your project:
+curl -o ohmytoken.js https://raw.githubusercontent.com/0x5446/ohmytoken-oss/main/sdk/javascript/ohmytoken.js
+```
+
+```javascript
+import { init, track } from './ohmytoken.js'
+init('omt_YOUR_KEY')
+await track('gpt-4o', 500, 200)
+```
+
+### Go SDK
+
+```go
+// Copy sdk/go/ohmytoken.go into your project
+client := ohmytoken.New("omt_YOUR_KEY")
+client.Track("gpt-4o", 500, 200)
+```
+
+### Step 3: Watch your board
+
+Open **[ohmytoken.dev](https://ohmytoken.dev)** — beads appear in real-time as you use AI.
 
 ## What You Get
 

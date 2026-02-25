@@ -47,7 +47,8 @@ Pick your language/tool below and add 2-3 lines of code. That's it.
 
 ```bash
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
-export OTEL_EXPORTER_OTLP_ENDPOINT=https://api.ohmytoken.dev/api/v1/traces
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://api.ohmytoken.dev/api
+export OTEL_EXPORTER_OTLP_PROTOCOL=http/json
 export OTEL_EXPORTER_OTLP_HEADERS="x-api-key=omt_YOUR_KEY"
 ```
 

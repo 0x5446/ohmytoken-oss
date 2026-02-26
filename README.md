@@ -27,7 +27,7 @@
 
 ---
 
-Track your LLM token consumption across Claude, GPT, Gemini, DeepSeek, and any model. Every token becomes a colorful pixel on a retro bead board. Input tokens are light, output tokens are dark — because output costs 3-5x more and you should see that.
+Track your LLM token consumption across Claude, GPT, Gemini, DeepSeek, and any model. Every token becomes a colorful pixel on a retro bead board. Input tokens are light, output tokens are dark — so you can see at a glance where your tokens go.
 
 ## Quick Start
 
@@ -46,13 +46,16 @@ Pick your language/tool below and add 2-3 lines of code. That's it.
 ### Claude Code — 0 code changes, just env vars
 
 ```bash
+# Add to ~/.zshrc (or ~/.bashrc):
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
+export OTEL_METRICS_EXPORTER=otlp
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://api.ohmytoken.dev/api
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/json
 export OTEL_EXPORTER_OTLP_HEADERS="x-api-key=omt_YOUR_KEY"
+# Then: source ~/.zshrc && claude
 ```
 
-Add to your `.zshrc` / `.bashrc`, then `source ~/.zshrc`. Done.
+Only aggregated token counts are sent — no prompts, no code, no content.
 
 ### OpenClaw — 1 command
 
@@ -64,12 +67,6 @@ Then add your key to `openclaw.json`:
 ```json
 { "skills": { "ohmytoken-tracker": { "config": { "api_key": "omt_YOUR_KEY" } } } }
 ```
-
-### Cursor — via OpenRouter webhook
-
-In OpenRouter: Settings > Observability > Enable Broadcast > Add Webhook:
-- **URL**: `https://api.ohmytoken.dev/api/v1/traces`
-- **Headers**: `{"X-API-Key": "omt_YOUR_KEY"}`
 
 ### curl — any language, any agent
 

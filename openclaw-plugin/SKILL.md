@@ -57,10 +57,11 @@ Open your `openclaw.json` and add this block:
 | Token counts (prompt + completion) | Your responses |
 | Timestamp | Your API keys to providers |
 | | Your files, code, or data |
-| | Your IP address |
 | | Any conversation content |
 
-The tracker sends **4 numbers per request**: model name, prompt token count, completion token count, and timestamp. That's it. Your prompts, responses, files, and code **never leave your machine**.
+The tracker sends exactly **3 fields per request**: `model`, `prompt_tokens`, `completion_tokens`. That's it. Your prompts, responses, files, and code **never leave your machine**.
+
+**Note**: Like any HTTP request, your IP address is visible to the server during the connection. We do not log or store IP addresses.
 
 The source code is fully open: [github.com/0x5446/ohmytoken](https://github.com/0x5446/ohmytoken) — audit it yourself.
 

@@ -159,9 +159,9 @@ Required: `model`, `prompt_tokens`, `completion_tokens`. Optional: `cost`, `labe
 
 ## Privacy
 
-We collect **only**: model name, token counts (input + output), timestamp.
+We collect **only**: model name, prompt token count, completion token count. That's 3 fields.
 
-We **never** collect: prompts, responses, code, files, API keys, IP addresses, or any content whatsoever.
+We **never** collect: prompts, responses, code, files, API keys, or any content whatsoever. Your IP is visible during the HTTP connection but is not logged or stored.
 
 Like a step counter — it counts steps, not conversations.
 

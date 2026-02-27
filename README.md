@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://ohmytoken.dev">Website</a> &bull;
   <a href="https://github.com/0x5446/ohmytoken-oss/discussions">Community</a> &bull;
-  <a href="https://clawhub.ai/0x5446/ohmytoken-tracker">ClawHub</a> &bull;
+  <a href="https://clawhub.ai/0x5446/ohmytoken">ClawHub</a> &bull;
   <a href="#license">MIT License</a>
 </p>
 
@@ -60,12 +60,12 @@ Only aggregated token counts are sent — no prompts, no code, no content.
 ### OpenClaw — 1 command
 
 ```bash
-openclaw skill install @0x5446/ohmytoken-tracker
+openclaw skill install @0x5446/ohmytoken
 ```
 
 Then add your key to `openclaw.json`:
 ```json
-{ "skills": { "ohmytoken-tracker": { "config": { "api_key": "omt_YOUR_KEY" } } } }
+{ "skills": { "ohmytoken": { "config": { "api_key": "omt_YOUR_KEY" } } } }
 ```
 
 ### curl — any language, any agent

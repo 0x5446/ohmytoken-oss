@@ -63,9 +63,9 @@ Only aggregated token counts are sent — no prompts, no code, no content.
 openclaw skill install @0x5446/ohmytoken
 ```
 
-Then add your key to `openclaw.json`:
-```json
-{ "skills": { "ohmytoken": { "config": { "api_key": "omt_YOUR_KEY" } } } }
+Then set your API key (recommended — stays out of git):
+```bash
+export OHMYTOKEN_API_KEY="omt_YOUR_KEY"
 ```
 
 ### curl — any language, any agent

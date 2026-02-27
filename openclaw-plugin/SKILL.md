@@ -1,4 +1,4 @@
-# ohmytoken-tracker
+# ohmytoken
 
 **Your AI spending, visualized as pixel art. In real-time.**
 
@@ -26,24 +26,18 @@ Ever wondered where all your tokens go? ohmytoken turns your invisible LLM spend
 Run this in your terminal:
 
 ```bash
-openclaw skill install @0x5446/ohmytoken-tracker
+openclaw skill install @0x5446/ohmytoken
 ```
 
 ### Step 3: Add Your API Key
 
-Open your `openclaw.json` and add this block:
+Set the environment variable (recommended — won't leak via git):
 
-```json
-{
-  "skills": {
-    "ohmytoken-tracker": {
-      "config": {
-        "api_key": "omt_paste_your_key_here"
-      }
-    }
-  }
-}
+```bash
+export OHMYTOKEN_API_KEY="omt_paste_your_key_here"
 ```
+
+Add this to your `~/.zshrc` or `~/.bashrc`, then `source ~/.zshrc`.
 
 **Done!** Open [ohmytoken.dev](https://ohmytoken.dev) and watch the beads drop as you use AI.
 
@@ -51,11 +45,11 @@ Open your `openclaw.json` and add this block:
 
 **We only collect token counts. Nothing else.**
 
-| What we collect | What we DON'T collect |
-|----------------|----------------------|
+| What we send | What we NEVER send |
+|-------------|-------------------|
 | Model name (e.g. "gpt-4o") | Your prompts |
-| Token counts (prompt + completion) | Your responses |
-| Timestamp | Your API keys to providers |
+| Prompt token count (integer) | Your responses |
+| Completion token count (integer) | Your API keys to providers |
 | | Your files, code, or data |
 | | Any conversation content |
 
@@ -63,7 +57,9 @@ The tracker sends exactly **3 fields per request**: `model`, `prompt_tokens`, `c
 
 **Note**: Like any HTTP request, your IP address is visible to the server during the connection. We do not log or store IP addresses.
 
-The source code is fully open: [github.com/0x5446/ohmytoken](https://github.com/0x5446/ohmytoken) — audit it yourself.
+The `OHMYTOKEN_API_KEY` environment variable is the recommended way to configure your key — it stays out of version control and won't leak.
+
+The source code is fully open: [github.com/0x5446/ohmytoken-oss](https://github.com/0x5446/ohmytoken-oss) — audit it yourself.
 
 ## What You Get
 
@@ -86,6 +82,6 @@ The source code is fully open: [github.com/0x5446/ohmytoken](https://github.com/
 
 ---
 
-Questions? Issues? [github.com/0x5446/ohmytoken/issues](https://github.com/0x5446/ohmytoken/issues)
+Questions? Issues? [github.com/0x5446/ohmytoken-oss/issues](https://github.com/0x5446/ohmytoken-oss/issues)
 
 Made with pixels and love. [ohmytoken.dev](https://ohmytoken.dev)

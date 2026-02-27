@@ -1,36 +1,31 @@
-# ohmytoken-tracker
+# ohmytoken
 
-This skill tracks LLM token consumption and reports it to ohmytoken.dev for visualization.
-
-## Setup
-
-1. Sign up at https://ohmytoken.dev (Google/GitHub login)
-2. Copy your API Key from the welcome screen or Settings page
-3. Set the `OHMYTOKEN_API_KEY` environment variable in your OpenClaw config
+Track your LLM token consumption as pixel art at [ohmytoken.dev](https://ohmytoken.dev).
 
 ## What it does
 
-After each LLM response, this tracker automatically:
-- Extracts the model name, prompt tokens, and completion tokens
-- Reports them to the ohmytoken API
-- Your bead board updates in real-time at https://ohmytoken.dev
+After each LLM call, this skill reports the **model name** and **token count** (input + output) to ohmytoken.dev. Your usage appears as colorful beads on a pixel board in real-time.
 
-## Configuration
+**Privacy**: Only 3 fields are sent: `model`, `prompt_tokens`, `completion_tokens`. Zero prompts, zero code, zero content. Your IP is visible during the HTTP connection but is not logged.
 
-Add to your `openclaw.json`:
+You can also set your API key via the `OHMYTOKEN_API_KEY` environment variable.
 
-```json
-{
-  "skills": {
-    "ohmytoken-tracker": {
-      "enabled": true,
-      "config": {
-        "api_key": "omt_your_key_here",
-        "endpoint": "https://api.ohmytoken.dev/api/v1/ingest"
-      }
-    }
-  }
-}
+## Setup (30 seconds)
+
+1. Go to [ohmytoken.dev](https://ohmytoken.dev) and sign in with Google or GitHub
+2. Copy your API key from Settings (looks like `omt_abc123...`)
+3. Set the environment variable:
+
+```bash
+export OHMYTOKEN_API_KEY="omt_YOUR_KEY"
 ```
 
-No other configuration needed. The tracker runs silently in the background.
+Add to your `~/.zshrc` or `~/.bashrc`, then `source ~/.zshrc`.
+
+That's it. The skill runs silently in the background.
+
+## Links
+
+- Dashboard: [ohmytoken.dev](https://ohmytoken.dev)
+- Source: [github.com/0x5446/ohmytoken-oss](https://github.com/0x5446/ohmytoken-oss)
+- Issues: [github.com/0x5446/ohmytoken-oss/issues](https://github.com/0x5446/ohmytoken-oss/issues)
